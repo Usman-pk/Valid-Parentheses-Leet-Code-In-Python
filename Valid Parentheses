@@ -1,0 +1,42 @@
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+
+        stack = []
+        for i in range(0, len(s)):
+            stack.append(s[i])
+
+        Bool = False
+        v1 = ""
+        v2 = ""
+        TotalSize = len(stack)
+        if TotalSize % 2 != 0:
+            print(Bool)
+            return Bool
+        else:
+            if TotalSize == 2:
+                v1 = stack.pop()
+                v2 = stack.pop()
+                if str(v2 + v1) == "()":
+                    Bool = True
+                elif str(v2 + v1) == "{}":
+                    Bool = True
+                elif str(v2 + v1) == "[]":
+                    Bool = True
+            else:
+                half = TotalSize/2
+                for i in range(int(half), 0, -1):
+                    v1 = stack.pop()
+                    v2 = stack.pop()
+                    if str(v2 + v1) == "()":
+                        Bool = True
+                    elif str(v2 + v1) == "{}":
+                        Bool = True
+                    elif str(v2 + v1) == "[]":
+                        Bool = True
+                    if not Bool:
+                        break
+        return Bool
